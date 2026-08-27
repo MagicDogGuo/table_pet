@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{889203C0-8E65-4FFC-B46D-F31D52247871}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePet", "src\TablePet\TablePet.csproj", "{3949F0C6-8948-4B1F-88D8-CDDD9209CF09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DA7EA22B-E4D1-4D29-B571-F2A04D7166C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePet.Tests", "tests\TablePet.Tests\TablePet.Tests.csproj", "{0DB2AF3B-2F4F-4BFC-91AF-BDBCB37C0D1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3949F0C6-8948-4B1F-88D8-CDDD9209CF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3949F0C6-8948-4B1F-88D8-CDDD9209CF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3949F0C6-8948-4B1F-88D8-CDDD9209CF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3949F0C6-8948-4B1F-88D8-CDDD9209CF09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB2AF3B-2F4F-4BFC-91AF-BDBCB37C0D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB2AF3B-2F4F-4BFC-91AF-BDBCB37C0D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB2AF3B-2F4F-4BFC-91AF-BDBCB37C0D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB2AF3B-2F4F-4BFC-91AF-BDBCB37C0D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3949F0C6-8948-4B1F-88D8-CDDD9209CF09} = {889203C0-8E65-4FFC-B46D-F31D52247871}
+		{0DB2AF3B-2F4F-4BFC-91AF-BDBCB37C0D1A} = {DA7EA22B-E4D1-4D29-B571-F2A04D7166C5}
+	EndGlobalSection
+EndGlobal

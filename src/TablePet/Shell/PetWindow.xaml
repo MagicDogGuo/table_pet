@@ -1,0 +1,70 @@
+<Window x:Class="TablePet.Shell.PetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Table Pet"
+        Width="160"
+        Height="200"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        ShowActivated="True"
+        WindowStartupLocation="CenterScreen">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Idle" Click="IdleMenu_Click"/>
+            <MenuItem Header="Walk" Click="WalkMenu_Click"/>
+            <MenuItem Header="Sit" Click="SitMenu_Click"/>
+            <MenuItem Header="Lie down" Click="LieMenu_Click"/>
+            <Separator/>
+            <MenuItem Header="Settings..." Click="SettingsMenu_Click"/>
+            <MenuItem Header="Hide" Click="HideMenu_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <StackPanel>
+        <Border x:Name="Bubble"
+                Visibility="Collapsed"
+                Background="#FFFDF6E3"
+                BorderBrush="#FF6B4F3A"
+                BorderThickness="2"
+                CornerRadius="10"
+                Padding="10,6"
+                Margin="0,0,0,6"
+                MouseLeftButtonUp="Bubble_MouseLeftButtonUp">
+            <StackPanel>
+                <TextBlock x:Name="BubbleText"
+                           Text="Time to drink water."
+                           FontSize="12"
+                           Foreground="#FF3B2F2F"
+                           TextWrapping="Wrap"
+                           MaxWidth="140"/>
+                <Button Content="Snooze 5 min"
+                        Margin="0,6,0,0"
+                        Padding="6,2"
+                        FontSize="11"
+                        Click="Snooze_Click"/>
+            </StackPanel>
+        </Border>
+        <Grid Width="128" Height="128" MouseLeftButtonDown="Pet_MouseLeftButtonDown">
+            <Image x:Name="PetImage"
+                   Stretch="Uniform"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                   Visibility="Collapsed"/>
+            <Canvas x:Name="Placeholder"
+                    Width="128"
+                    Height="128"
+                    Background="#22000000">
+                <Ellipse x:Name="EarLeft" Width="28" Height="36" Canvas.Left="28" Canvas.Top="18" Fill="#E8C9A0"/>
+                <Ellipse x:Name="EarRight" Width="28" Height="36" Canvas.Left="72" Canvas.Top="18" Fill="#E8C9A0"/>
+                <Ellipse x:Name="Body" Width="92" Height="72" Canvas.Left="18" Canvas.Top="42" Fill="#F3E0C8"/>
+                <Ellipse Width="22" Height="16" Canvas.Left="38" Canvas.Top="58" Fill="#C9956C"/>
+                <Ellipse Width="18" Height="14" Canvas.Left="70" Canvas.Top="78" Fill="#C9956C"/>
+                <Ellipse Width="10" Height="10" Canvas.Left="48" Canvas.Top="70" Fill="#2B211C"/>
+                <Ellipse Width="10" Height="10" Canvas.Left="70" Canvas.Top="70" Fill="#2B211C"/>
+                <Ellipse Width="12" Height="8" Canvas.Left="58" Canvas.Top="82" Fill="#E89AA8"/>
+            </Canvas>
+        </Grid>
+    </StackPanel>
+</Window>
