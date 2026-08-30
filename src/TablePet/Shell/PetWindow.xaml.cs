@@ -20,7 +20,6 @@ public partial class PetWindow : Window
     private readonly DispatcherTimer _loop = new();
     private readonly TimeSpan _frameTime = TimeSpan.FromMilliseconds(16);
     private TimeSpan _reminderTick;
-    private TimeSpan _bubbleAge;
     private DateTime _lastTickUtc = DateTime.UtcNow;
     private bool _placed;
 
@@ -45,7 +44,9 @@ public partial class PetWindow : Window
     public void ApplyClickThrough()
     {
         var hwnd = new WindowInteropHelper(this).Handle;
-        var enable = _settingsStore.Current.ClickThrough && _pet.State != PetState.Dragged;
+        var enable = _settingsStore.Current.ClickThrough
+            && _pet.State != PetState.Dragged
+            && !_reminder.IsBubbleVisible;
         ClickThroughService.SetClickThrough(hwnd, enable);
     }
 
@@ -103,15 +104,7 @@ public partial class PetWindow : Window
 
         var elapsedMs = (int)Math.Max(1, delta.TotalMilliseconds);
 
-        if (_reminder.IsBubbleVisible)
-        {
-            _bubbleAge += delta;
-            if (_bubbleAge >= TimeSpan.FromSeconds(ReminderConfig.BubbleSeconds))
-            {
-                HideReminderBubble();
-            }
-        }
-        else
+        if (!_reminder.IsBubbleVisible)
         {
             var ai = _pet.TickAi(elapsedMs);
             if (ai == PetAiCommand.StartWalk)
@@ -199,7 +192,7 @@ public partial class PetWindow : Window
 
         BubbleText.Text = ReminderConfig.Message;
         Bubble.Visibility = Visibility.Visible;
-        _bubbleAge = TimeSpan.Zero;
+        ApplyClickThrough();
         Dispatcher.BeginInvoke(() => ScreenBounds.ClampToWorkArea(this));
     }
 
@@ -207,6 +200,7 @@ public partial class PetWindow : Window
     {
         Bubble.Visibility = Visibility.Collapsed;
         _reminder.Acknowledge();
+        ApplyClickThrough();
     }
 
     private void Pet_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -214,11 +208,6 @@ public partial class PetWindow : Window
         if (e.ClickCount >= 2)
         {
             return;
-        }
-
-        if (_reminder.IsBubbleVisible)
-        {
-            HideReminderBubble();
         }
 
         _pet.BeginDrag();
@@ -236,7 +225,7 @@ public partial class PetWindow : Window
         }
     }
 
-    private void Bubble_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+    private void Confirm_Click(object sender, RoutedEventArgs e)
     {
         HideReminderBubble();
     }

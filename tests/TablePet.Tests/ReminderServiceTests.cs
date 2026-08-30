@@ -70,6 +70,30 @@ public class ReminderServiceTests
         Assert.Equal(0, fired);
     }
 
+    [Fact]
+    public void Acknowledge_reschedules_from_now()
+    {
+        var clock = new FakeClock(DateTimeOffset.Parse("2026-01-01T00:00:00Z"));
+        var store = NewStore();
+        var reminder = new ReminderService(clock, store);
+        var fired = 0;
+        reminder.ReminderDue += () => fired++;
+
+        clock.Advance(TimeSpan.FromMinutes(store.Current.IntervalMinutes));
+        reminder.Tick();
+        reminder.Acknowledge();
+
+        clock.Advance(TimeSpan.FromMinutes(store.Current.IntervalMinutes - 1));
+        reminder.Tick();
+        Assert.Equal(1, fired);
+        Assert.False(reminder.IsBubbleVisible);
+
+        clock.Advance(TimeSpan.FromMinutes(1));
+        reminder.Tick();
+        Assert.Equal(2, fired);
+        Assert.True(reminder.IsBubbleVisible);
+    }
+
     private static SettingsStore NewStore()
     {
         var dir = Path.Combine(Path.GetTempPath(), "TablePetTests", Guid.NewGuid().ToString("N"));

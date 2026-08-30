@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Table Pet"
         Width="160"
-        Height="200"
+        Height="230"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -31,14 +31,21 @@
                 BorderThickness="2"
                 CornerRadius="10"
                 Padding="10,6"
-                Margin="0,0,0,6"
-                MouseLeftButtonUp="Bubble_MouseLeftButtonUp">
-            <TextBlock x:Name="BubbleText"
-                       Text="Time to drink water."
-                       FontSize="12"
-                       Foreground="#FF3B2F2F"
-                       TextWrapping="Wrap"
-                       MaxWidth="140"/>
+                Margin="0,0,0,6">
+            <StackPanel>
+                <TextBlock x:Name="BubbleText"
+                           Text="Time to drink water."
+                           FontSize="12"
+                           Foreground="#FF3B2F2F"
+                           TextWrapping="Wrap"
+                           MaxWidth="140"/>
+                <Button Content="Confirm"
+                        Margin="0,6,0,0"
+                        Padding="6,2"
+                        FontSize="11"
+                        HorizontalAlignment="Right"
+                        Click="Confirm_Click"/>
+            </StackPanel>
         </Border>
         <Grid Width="128" Height="128" MouseLeftButtonDown="Pet_MouseLeftButtonDown">
             <Image x:Name="PetImage"
