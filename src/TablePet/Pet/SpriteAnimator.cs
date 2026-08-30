@@ -21,7 +21,11 @@ public sealed class SpriteAnimator
 
     public void SetClip(PetState state, PetFacing facing)
     {
-        var clipId = ClipId(state);
+        SetClip(ClipId(state), facing);
+    }
+
+    public void SetClip(string clipId, PetFacing facing)
+    {
         var clipChanged = clipId != _clipId;
         _clipId = clipId;
         _facing = facing;

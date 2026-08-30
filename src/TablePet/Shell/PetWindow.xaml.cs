@@ -118,18 +118,18 @@ public partial class PetWindow : Window
             StepWalk(delta);
         }
 
-        _animator.SetClip(_pet.State, _pet.Facing);
-        _animator.Advance(delta);
-        if (_animator.HasFrames && _animator.CurrentFrame is not null)
-        {
-            PetImage.Source = _animator.CurrentFrame;
-        }
-
         _reminderTick += delta;
         if (_reminderTick >= TimeSpan.FromSeconds(1))
         {
             _reminderTick = TimeSpan.Zero;
             _reminder.Tick();
+        }
+
+        ApplyAnimatorClip();
+        _animator.Advance(delta);
+        if (_animator.HasFrames && _animator.CurrentFrame is not null)
+        {
+            PetImage.Source = _animator.CurrentFrame;
         }
 
         WindowActivation.KeepTopmostWithoutActivate(this);
@@ -179,8 +179,19 @@ public partial class PetWindow : Window
         Placeholder.RenderTransformOrigin = new Point(0.5, 1);
         Placeholder.RenderTransform = new ScaleTransform(1, scaleY);
 
-        _animator.SetClip(_pet.State, _pet.Facing);
+        ApplyAnimatorClip();
         ApplyClickThrough();
+    }
+
+    private void ApplyAnimatorClip()
+    {
+        if (_reminder.IsBubbleVisible)
+        {
+            _animator.SetClip("drink", PetFacing.Right);
+            return;
+        }
+
+        _animator.SetClip(_pet.State, _pet.Facing);
     }
 
     private void ShowReminderBubble()

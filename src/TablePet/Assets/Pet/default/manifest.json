@@ -7,6 +7,7 @@
     "idle": { "fps": 3 },
     "walk": { "fps": 10 },
     "sit": { "fps": 4 },
-    "lie": { "fps": 3 }
+    "lie": { "fps": 3 },
+    "drink": { "fps": 1 }
   }
 }

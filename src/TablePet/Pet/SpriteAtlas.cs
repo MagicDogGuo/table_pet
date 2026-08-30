@@ -120,6 +120,11 @@ public sealed class SpriteAtlas
             return idle;
         }
 
+        if (clipId == "drink" && _clips.TryGetValue("sit", out var sit))
+        {
+            return sit;
+        }
+
         return null;
     }
 
