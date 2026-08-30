@@ -1,0 +1,12 @@
+{
+  "id": "default",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "fps": 8,
+  "clips": {
+    "idle": { "fps": 6 },
+    "walk": { "fps": 10 },
+    "sit": { "fps": 4 },
+    "lie": { "fps": 3 }
+  }
+}
