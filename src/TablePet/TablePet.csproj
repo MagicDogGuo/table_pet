@@ -8,6 +8,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>TablePet</RootNamespace>
     <AssemblyName>TablePet</AssemblyName>
+    <ApplicationIcon>Assets\App.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
@@ -20,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\App.ico" />
     <Resource Include="Assets\Tray.png" />
     <Resource Include="Assets\Tray.ico" />
     <None Include="Assets\Pet\**\*" CopyToOutputDirectory="PreserveNewest" />

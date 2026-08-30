@@ -39,14 +39,14 @@ public partial class App : Application
             _reminder.ReminderDue += OnReminderDue;
             _petWindow.Show();
             _petWindow.Activate();
-            Console.WriteLine("Table Pet is running.");
-            Console.WriteLine("Look at the CENTER of the desktop, or the tray icon near the clock.");
-            Console.WriteLine("Right-click the tray icon and choose Exit to quit.");
+            Console.WriteLine("桌寵正在執行。");
+            Console.WriteLine("請看桌面中央，或是時鐘旁的系統匣圖示。");
+            Console.WriteLine("在系統匣圖示按右鍵，選「結束」即可關閉。");
         }
         catch (Exception ex)
         {
             Console.Error.WriteLine(ex);
-            MessageBox.Show(ex.ToString(), "Table Pet failed to start");
+            MessageBox.Show(ex.ToString(), "桌寵啟動失敗");
             Shutdown(-1);
         }
     }
@@ -55,30 +55,30 @@ public partial class App : Application
     {
         var tray = new TaskbarIcon
         {
-            ToolTipText = "Table Pet",
+            ToolTipText = "桌寵",
             IconSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Tray.ico")),
             ContextMenu = new ContextMenu()
         };
 
-        tray.ContextMenu.Items.Add(MakeItem("Show pet", (_, _) =>
+        tray.ContextMenu.Items.Add(MakeItem("顯示寵物", (_, _) =>
         {
             _petWindow.Show();
             _petWindow.Activate();
         }));
-        tray.ContextMenu.Items.Add(MakeItem("Hide pet", (_, _) => _petWindow.Hide()));
+        tray.ContextMenu.Items.Add(MakeItem("隱藏寵物", (_, _) => _petWindow.Hide()));
         tray.ContextMenu.Items.Add(new Separator());
-        tray.ContextMenu.Items.Add(MakeItem("Sit", (_, _) => _pet.RequestSit()));
-        tray.ContextMenu.Items.Add(MakeItem("Lie down", (_, _) => _pet.RequestLie()));
-        tray.ContextMenu.Items.Add(MakeItem("Walk", (_, _) =>
+        tray.ContextMenu.Items.Add(MakeItem("坐下", (_, _) => _pet.RequestSit()));
+        tray.ContextMenu.Items.Add(MakeItem("趴下", (_, _) => _pet.RequestLie()));
+        tray.ContextMenu.Items.Add(MakeItem("走路", (_, _) =>
         {
             _petWindow.Show();
             var work = ScreenBounds.GetWorkArea(_petWindow);
             _pet.RequestWalk(_petWindow.Left, work.Left, work.Right - _petWindow.ActualWidth);
         }));
         tray.ContextMenu.Items.Add(new Separator());
-        tray.ContextMenu.Items.Add(MakeItem("Settings...", (_, _) => _petWindow.OpenSettings()));
+        tray.ContextMenu.Items.Add(MakeItem("設定...", (_, _) => _petWindow.OpenSettings()));
         tray.ContextMenu.Items.Add(new Separator());
-        tray.ContextMenu.Items.Add(MakeItem("Exit", (_, _) => Shutdown()));
+        tray.ContextMenu.Items.Add(MakeItem("結束", (_, _) => Shutdown()));
         tray.TrayMouseDoubleClick += (_, _) =>
         {
             _petWindow.Show();
@@ -96,13 +96,13 @@ public partial class App : Application
 
     private void OnReminderDue()
     {
-        _tray.ShowBalloonTip("Table Pet", ReminderConfig.Message, BalloonIcon.Info);
+        _tray.ShowBalloonTip("桌寵", ReminderConfig.Message, BalloonIcon.Info);
     }
 
     private void OnUiCrash(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
     {
         Console.Error.WriteLine(e.Exception);
-        MessageBox.Show(e.Exception.ToString(), "Table Pet error");
+        MessageBox.Show(e.Exception.ToString(), "桌寵發生錯誤");
         e.Handled = true;
     }
 
