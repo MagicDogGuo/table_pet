@@ -1,4 +1,3 @@
-using TablePet.Config;
 using TablePet.Persistence;
 
 namespace TablePet.Reminder;
@@ -49,12 +48,6 @@ public sealed class ReminderService
     {
         _bubbleVisible = false;
         ScheduleFromNow();
-    }
-
-    public void Snooze()
-    {
-        _bubbleVisible = false;
-        _nextDue = _clock.UtcNow.AddMinutes(ReminderConfig.SnoozeMinutes);
     }
 
     public void ScheduleFromNow()

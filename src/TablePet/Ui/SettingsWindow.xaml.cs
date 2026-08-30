@@ -1,4 +1,5 @@
 using System.Windows;
+using TablePet.Config;
 using TablePet.Persistence;
 
 namespace TablePet.Ui;
@@ -11,6 +12,9 @@ public partial class SettingsWindow : Window
     {
         _settingsStore = settingsStore;
         InitializeComponent();
+
+        IntervalSlider.Minimum = ReminderConfig.MinIntervalMinutes;
+        IntervalSlider.Maximum = ReminderConfig.MaxIntervalMinutes;
 
         var settings = _settingsStore.Current;
         ReminderEnabled.IsChecked = settings.ReminderEnabled;

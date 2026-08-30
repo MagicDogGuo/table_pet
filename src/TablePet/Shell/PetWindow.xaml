@@ -33,19 +33,12 @@
                 Padding="10,6"
                 Margin="0,0,0,6"
                 MouseLeftButtonUp="Bubble_MouseLeftButtonUp">
-            <StackPanel>
-                <TextBlock x:Name="BubbleText"
-                           Text="Time to drink water."
-                           FontSize="12"
-                           Foreground="#FF3B2F2F"
-                           TextWrapping="Wrap"
-                           MaxWidth="140"/>
-                <Button Content="Snooze 5 min"
-                        Margin="0,6,0,0"
-                        Padding="6,2"
-                        FontSize="11"
-                        Click="Snooze_Click"/>
-            </StackPanel>
+            <TextBlock x:Name="BubbleText"
+                       Text="Time to drink water."
+                       FontSize="12"
+                       Foreground="#FF3B2F2F"
+                       TextWrapping="Wrap"
+                       MaxWidth="140"/>
         </Border>
         <Grid Width="128" Height="128" MouseLeftButtonDown="Pet_MouseLeftButtonDown">
             <Image x:Name="PetImage"

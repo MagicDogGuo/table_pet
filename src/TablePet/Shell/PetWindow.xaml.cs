@@ -108,7 +108,7 @@ public partial class PetWindow : Window
             _bubbleAge += delta;
             if (_bubbleAge >= TimeSpan.FromSeconds(ReminderConfig.BubbleSeconds))
             {
-                HideReminderBubble(acknowledge: true);
+                HideReminderBubble();
             }
         }
         else
@@ -203,13 +203,10 @@ public partial class PetWindow : Window
         Dispatcher.BeginInvoke(() => ScreenBounds.ClampToWorkArea(this));
     }
 
-    private void HideReminderBubble(bool acknowledge)
+    private void HideReminderBubble()
     {
         Bubble.Visibility = Visibility.Collapsed;
-        if (acknowledge)
-        {
-            _reminder.Acknowledge();
-        }
+        _reminder.Acknowledge();
     }
 
     private void Pet_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -221,7 +218,7 @@ public partial class PetWindow : Window
 
         if (_reminder.IsBubbleVisible)
         {
-            HideReminderBubble(acknowledge: true);
+            HideReminderBubble();
         }
 
         _pet.BeginDrag();
@@ -241,13 +238,7 @@ public partial class PetWindow : Window
 
     private void Bubble_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
-        HideReminderBubble(acknowledge: true);
-    }
-
-    private void Snooze_Click(object sender, RoutedEventArgs e)
-    {
-        HideReminderBubble(acknowledge: false);
-        _reminder.Snooze();
+        HideReminderBubble();
     }
 
     private void IdleMenu_Click(object sender, RoutedEventArgs e) => _pet.RequestIdle();

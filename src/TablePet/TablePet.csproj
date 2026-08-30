@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\jack.gif" />
+    <Resource Include="Assets\Tray.png" />
     <Resource Include="Assets\Tray.ico" />
     <None Include="Assets\Pet\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

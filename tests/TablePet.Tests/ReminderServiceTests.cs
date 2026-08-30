@@ -1,4 +1,3 @@
-using TablePet.Config;
 using TablePet.Persistence;
 using TablePet.Reminder;
 
@@ -69,28 +68,6 @@ public class ReminderServiceTests
         reminder.Tick();
 
         Assert.Equal(0, fired);
-    }
-
-    [Fact]
-    public void Snooze_delays_next_due()
-    {
-        var clock = new FakeClock(DateTimeOffset.Parse("2026-01-01T00:00:00Z"));
-        var store = NewStore();
-        var reminder = new ReminderService(clock, store);
-        var fired = 0;
-        reminder.ReminderDue += () => fired++;
-
-        clock.Advance(TimeSpan.FromMinutes(store.Current.IntervalMinutes));
-        reminder.Tick();
-        reminder.Snooze();
-
-        clock.Advance(TimeSpan.FromMinutes(ReminderConfig.SnoozeMinutes - 1));
-        reminder.Tick();
-        Assert.Equal(1, fired);
-
-        clock.Advance(TimeSpan.FromMinutes(1));
-        reminder.Tick();
-        Assert.Equal(2, fired);
     }
 
     private static SettingsStore NewStore()

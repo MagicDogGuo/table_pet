@@ -60,9 +60,8 @@ Default interval is **45 minutes** (5–180). When due:
 1. The pet sits and shows a bubble: `Time to drink water.`
 2. The tray may show the same balloon.
 3. Dismiss by clicking the bubble or the pet, or wait 20 seconds.
-4. **Snooze 5 min** delays the next reminder.
 
-The timer pauses while Settings is open or a bubble is already visible.
+The timer pauses while Settings is open or a bubble is already visible. Next reminder uses the configured interval.
 
 ### Click-through
 

@@ -15,9 +15,7 @@
         <DockPanel Margin="0,4,0,12">
             <TextBlock x:Name="IntervalLabel" DockPanel.Dock="Right" Width="36" TextAlignment="Right"/>
             <Slider x:Name="IntervalSlider"
-                    Minimum="5"
-                    Maximum="180"
-                    TickFrequency="5"
+                    TickFrequency="1"
                     IsSnapToTickEnabled="True"
                     ValueChanged="IntervalSlider_ValueChanged"/>
         </DockPanel>
